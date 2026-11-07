@@ -7,7 +7,7 @@ import joblib
 import streamlit as st
 
 ROOT = Path(__file__).resolve().parent
-MODEL_PATH = ROOT / "models" / "fake_news_pipeline.joblib"
+MODEL_PATH = ROOT / "fake_news_pipeline.joblib"
 
 st.set_page_config(page_title="Fake News Detection", page_icon="📰", layout="centered")
 st.title("📰 Fake News Detection")
