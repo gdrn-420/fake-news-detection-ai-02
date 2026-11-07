@@ -9,7 +9,12 @@ import streamlit as st
 ROOT = Path(__file__).resolve().parent
 MODEL_PATH = ROOT / "fake_news_pipeline.joblib"
 
-st.set_page_config(page_title="Fake News Detection", page_icon="📰", layout="centered")
+st.set_page_config(
+    page_title="Fake News Detection AI",
+    page_icon="fake_news_logo.png",
+    layout="centered"
+)
+st.image("fake_news_logo.png", width=150)
 st.title("📰 Fake News Detection")
 st.write("Paste a headline or short news text to see the model's predicted writing-pattern label.")
 
