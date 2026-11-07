@@ -40,7 +40,10 @@ if BACKGROUND_PATH.exists():
     )
 else:
     st.warning("background.jpg not found")
-st.image("fake_news_logo.png", width=150)
+col1, col2, col3 = st.columns([1, 2, 1])
+
+with col2:
+    st.image("fake_news_logo.png", width=150)
 st.title("📰 Fake News Detection")
 st.write("Paste a headline or short news text to see the model's predicted writing-pattern label.")
 
