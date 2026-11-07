@@ -14,6 +14,32 @@ st.set_page_config(
     page_icon="fake_news_logo.png",
     layout="centered"
 )
+st.markdown("""
+<style>
+.stApp {
+    background: linear-gradient(135deg, #07111f, #101b35, #160d20);
+    color: white;
+}
+
+h1, h2, h3, p, label {
+    color: #ffffff !important;
+}
+
+.stButton > button {
+    background: linear-gradient(90deg, #e63946, #2563eb);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.stTextArea textarea {
+    background-color: #111c30;
+    color: white;
+    border: 1px solid #287bce;
+}
+</style>
+""", unsafe_allow_html=True)
 st.image("fake_news_logo.png", width=150)
 st.title("📰 Fake News Detection")
 st.write("Paste a headline or short news text to see the model's predicted writing-pattern label.")
