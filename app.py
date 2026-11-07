@@ -3,11 +3,13 @@ Streamlit interface for the educational Fake News Detection prototype.
 Run: streamlit run app.py
 """
 from pathlib import Path
+import base64
 import joblib
 import streamlit as st
 
 ROOT = Path(__file__).resolve().parent
 MODEL_PATH = ROOT / "fake_news_pipeline.joblib"
+BACKGROUND_PATH = ROOT / "background.jpg"
 
 st.set_page_config(
     page_title="Fake News Detection AI",
@@ -15,30 +17,49 @@ st.set_page_config(
     layout="centered"
 )
 st.markdown("""
-<style>
-.stApp {
-    background: linear-gradient(135deg, #07111f, #101b35, #160d20);
-    color: white;
-}
+if BACKGROUND_PATH.exists():
+    encoded_bg = base64.b64encode(
+        BACKGROUND_PATH.read_bytes()
+    ).decode()
 
-h1, h2, h3, p, label {
-    color: #ffffff !important;
-}
+    background_css = f"""
+    <style>
+    .stApp {{
+        background:
+            linear-gradient(rgba(4, 6, 15, 0.72),
+                            rgba(4, 6, 15, 0.72)),
+            url("data:image/jpeg;base64,{encoded_bg}");
 
-.stButton > button {
-    background: linear-gradient(90deg, #e63946, #2563eb);
-    color: white;
-    border: none;
-    border-radius: 10px;
-    font-weight: bold;
-}
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        color: white;
+    }}
 
-.stTextArea textarea {
-    background-color: #111c30;
-    color: white;
-    border: 1px solid #287bce;
-}
-</style>
+    h1, h2, h3, p, label {{
+        color: white !important;
+    }}
+
+    .stButton > button {{
+        background: linear-gradient(90deg, #e63946, #2563eb);
+        color: white;
+        border: none;
+        border-radius: 10px;
+        font-weight: bold;
+    }}
+
+    .stTextArea textarea {{
+        background-color: #111c30;
+        color: white;
+        border: 1px solid #287bce;
+    }}
+    </style>
+    """
+
+    st.markdown(background_css, unsafe_allow_html=True)
+else:
+    st.warning("Background image not found. Please upload background.jpg.")
 """, unsafe_allow_html=True)
 st.image("fake_news_logo.png", width=150)
 st.title("📰 Fake News Detection")
