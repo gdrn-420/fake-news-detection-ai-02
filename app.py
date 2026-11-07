@@ -22,44 +22,25 @@ if BACKGROUND_PATH.exists():
         BACKGROUND_PATH.read_bytes()
     ).decode()
 
-    background_css = f"""
-    <style>
-    .stApp {{
-        background:
-            linear-gradient(rgba(4, 6, 15, 0.72),
-                            rgba(4, 6, 15, 0.72)),
-            url("data:image/jpeg;base64,{encoded_bg}");
-
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        color: white;
-    }}
-
-    h1, h2, h3, p, label {{
-        color: white !important;
-    }}
-
-    .stButton > button {{
-        background: linear-gradient(90deg, #e63946, #2563eb);
-        color: white;
-        border: none;
-        border-radius: 10px;
-        font-weight: bold;
-    }}
-
-    .stTextArea textarea {{
-        background-color: #111c30;
-        color: white;
-        border: 1px solid #287bce;
-    }}
-    </style>
-    """
-
-    st.markdown(background_css, unsafe_allow_html=True)
+    st.markdown(
+        f"""
+        <style>
+        .stApp {{
+            background-image:
+                linear-gradient(rgba(4,6,15,0.72), rgba(4,6,15,0.72)),
+                url("data:image/jpeg;base64,{encoded_bg}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: white;
+        }}
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
 else:
-    st.warning("Background image not found. Please upload background.jpg.")
+    st.warning("background.jpg not found")
 """, unsafe_allow_html=True)
 st.image("fake_news_logo.png", width=150)
 st.title("📰 Fake News Detection")
