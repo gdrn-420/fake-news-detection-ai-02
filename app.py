@@ -16,7 +16,6 @@ st.set_page_config(
     page_icon="fake_news_logo.png",
     layout="centered"
 )
-st.markdown("""
 if BACKGROUND_PATH.exists():
     encoded_bg = base64.b64encode(
         BACKGROUND_PATH.read_bytes()
@@ -41,7 +40,6 @@ if BACKGROUND_PATH.exists():
     )
 else:
     st.warning("background.jpg not found")
-""", unsafe_allow_html=True)
 st.image("fake_news_logo.png", width=150)
 st.title("📰 Fake News Detection")
 st.write("Paste a headline or short news text to see the model's predicted writing-pattern label.")
